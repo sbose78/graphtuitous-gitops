@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    app.openshift.io/vcs-uri: https://github.com/sbose78/graphtuitous-gitops.git
+  creationTimestamp: null
+  name: shbose
+spec: {}
+status: {}
