@@ -1,8 +1,10 @@
 resources:
 - 01-namespaces/cicd-environment.yaml
+- 01-namespaces/shbose.yaml
 - 02-rolebindings/commit-status-tracker-role.yaml
 - 02-rolebindings/commit-status-tracker-rolebinding.yaml
 - 02-rolebindings/commit-status-tracker-service-account.yaml
+- 02-rolebindings/internal-registry-shbose-binding.yaml
 - 02-rolebindings/pipeline-service-account.yaml
 - 02-rolebindings/pipeline-service-role.yaml
 - 02-rolebindings/pipeline-service-rolebinding.yaml
@@ -10,12 +12,15 @@ resources:
 - 03-secrets/git-host-access-token.yaml
 - 03-secrets/git-host-basic-auth-token.yaml
 - 03-secrets/gitops-webhook-secret.yaml
+- 03-secrets/webhook-secret-dev-graphtuitous-gitops.yaml
 - 03-secrets/webhook-secret-dev-graphtuitous.yaml
+- 03-secrets/webhook-secret-test-graphtuitous.yaml
 - 04-tasks/deploy-from-source-task.yaml
 - 05-pipelines/app-ci-pipeline.yaml
 - 05-pipelines/ci-dryrun-from-push-pipeline.yaml
 - 06-bindings/dev-app-graphtuitous-graphtuitous-binding.yaml
 - 06-bindings/github-push-binding.yaml
+- 06-bindings/test-app-graphtuitous-graphtuitous-binding.yaml
 - 07-templates/app-ci-build-from-push-template.yaml
 - 07-templates/ci-dryrun-from-push-template.yaml
 - 08-eventlisteners/cicd-event-listener.yaml
