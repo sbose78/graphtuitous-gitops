@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rgb-service-v1
+  labels:
+    app: rgb-service
+    app.kubernetes.io/name: graphtuitous
+    app.kubernetes.io/part-of: app-graphtuitous
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: rgb-service
+      app.kubernetes.io/name: graphtuitous
+      app.kubernetes.io/part-of: app-graphtuitous
+  template:
+    metadata:
+      labels:
+        app: rgb-service
+        app.kubernetes.io/name: graphtuitous
+        app.kubernetes.io/part-of: app-graphtuitous
+    spec:
+      containers:
+      - name: rgb-service
+        image: quay.io/shbose/graphtuitous:sbose78-patch-7-b08441121dd6fd8958d602ccf3625eb941c3bde7
+        resources:
+          limits:
+            cpu: "200m"
+            memory: "64Mi"
+          requests:
+            cpu: "100m"
+            memory: "64Mi"
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          tcpSocket:
+             port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          initialDelaySeconds: 2
+          periodSeconds: 5
+          httpGet:
+            path: /test
+            port: 8080

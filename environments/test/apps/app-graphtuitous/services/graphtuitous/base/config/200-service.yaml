@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rgb-service-v1
+  labels:
+    app: rgb-service
+    app.kubernetes.io/name: graphtuitous
+    app.kubernetes.io/part-of: app-graphtuitous
+spec:
+  selector:
+    app: rgb-service
+    app.kubernetes.io/name: graphtuitous
+    app.kubernetes.io/part-of: app-graphtuitous
+  ports:
+  - port: 8080
+    targetPort: 8080
+  type: LoadBalancer
