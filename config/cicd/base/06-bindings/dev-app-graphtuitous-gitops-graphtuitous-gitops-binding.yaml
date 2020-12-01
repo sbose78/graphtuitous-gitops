@@ -2,7 +2,7 @@ apiVersion: triggers.tekton.dev/v1alpha1
 kind: TriggerBinding
 metadata:
   creationTimestamp: null
-  name: dev-app-graphtuitous-graphtuitous-binding
+  name: dev-app-graphtuitous-gitops-graphtuitous-gitops-binding
   namespace: cicd
 spec:
   params:
