@@ -22,7 +22,7 @@ spec:
         app.kubernetes.io/part-of: app-graphtuitous
     spec:
       containers:
-      - image: nginxinc/nginx-unprivileged:latest
+      - image: quay.io/shbose/graphtuitous:sbose78-patch-10-c8426005d8683bac048bc10f4df0bda50858e5d2
         imagePullPolicy: Always
         name: graphtuitous
         ports:
