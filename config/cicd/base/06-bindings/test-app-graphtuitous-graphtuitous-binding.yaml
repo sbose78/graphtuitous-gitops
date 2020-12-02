@@ -1,0 +1,13 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerBinding
+metadata:
+  creationTimestamp: null
+  name: test-app-graphtuitous-graphtuitous-binding
+  namespace: cicd
+spec:
+  params:
+  - name: imageRepo
+    value: quay.io/shbose/graphtuitous-gitops
+  - name: tlsVerify
+    value: "true"
+status: {}

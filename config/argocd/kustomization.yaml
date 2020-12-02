@@ -5,3 +5,5 @@ resources:
 - dev-app-graphtuitous-app.yaml
 - dev-env-app.yaml
 - stage-env-app.yaml
+- test-app-graphtuitous-app.yaml
+- test-env-app.yaml

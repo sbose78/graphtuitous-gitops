@@ -25,5 +25,24 @@ environments:
       - github-push-binding
       template: app-ci-template
 - name: stage
+- apps:
+  - name: app-graphtuitous
+    services:
+    - name: graphtuitous
+      pipelines:
+        integration:
+          bindings:
+          - test-app-graphtuitous-graphtuitous-binding
+          - github-push-binding
+      webhook:
+        secret:
+          name: webhook-secret-test-graphtuitous
+          namespace: cicd
+  name: test
+  pipelines:
+    integration:
+      bindings:
+      - github-push-binding
+      template: app-ci-template
 gitops_url: https://github.com/sbose78/graphtuitous-gitops.git
 version: 1
