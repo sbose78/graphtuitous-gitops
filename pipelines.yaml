@@ -1,0 +1,29 @@
+config:
+  argocd:
+    namespace: argocd
+  pipelines:
+    name: cicd
+environments:
+- apps:
+  - name: app-graphtuitous
+    services:
+    - name: graphtuitous
+      pipelines:
+        integration:
+          bindings:
+          - dev-app-graphtuitous-graphtuitous-binding
+          - github-push-binding
+      source_url: https://github.com/sbose78/graphtuitous.git
+      webhook:
+        secret:
+          name: webhook-secret-dev-graphtuitous
+          namespace: cicd
+  name: dev
+  pipelines:
+    integration:
+      bindings:
+      - github-push-binding
+      template: app-ci-template
+- name: stage
+gitops_url: https://github.com/sbose78/graphtuitous-gitops.git
+version: 1
