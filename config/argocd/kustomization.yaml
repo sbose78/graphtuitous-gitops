@@ -1,0 +1,7 @@
+resources:
+- argo-app.yaml
+- argocd.yaml
+- cicd-app.yaml
+- demo-dev-app-graphtuitous-app.yaml
+- demo-dev-env-app.yaml
+- demo-stage-env-app.yaml

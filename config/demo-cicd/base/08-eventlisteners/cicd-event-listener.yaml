@@ -1,0 +1,46 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  creationTimestamp: null
+  name: cicd-event-listener
+  namespace: demo-cicd
+spec:
+  podTemplate: {}
+  serviceAccountName: pipeline
+  triggers:
+  - bindings:
+    - ref: github-push-binding
+    interceptors:
+    - github:
+        secretRef:
+          namespace: demo-cicd
+          secretKey: webhook-secret-key
+          secretName: gitops-webhook-secret
+    - cel:
+        filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name == 'sbose78/graphtuitous-gitops')
+        overlays:
+        - expression: body.ref.split('/')[2]
+          key: ref
+    name: ci-dryrun-from-push
+    template:
+      name: ci-dryrun-from-push-template
+  - bindings:
+    - ref: demo-dev-app-graphtuitous-graphtuitous-binding
+    - ref: github-push-binding
+    interceptors:
+    - github:
+        secretRef:
+          namespace: demo-cicd
+          secretKey: webhook-secret-key
+          secretName: webhook-secret-demo-dev-graphtuitous
+    - cel:
+        filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name == 'sbose78/graphtuitous')
+        overlays:
+        - expression: body.ref.split('/')[2]
+          key: ref
+    name: app-ci-build-from-push-graphtuitous
+    template:
+      name: app-ci-template
+status:
+  configuration:
+    generatedName: ""
